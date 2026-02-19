@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Character Counter Tool</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; }
+        textarea { width: 100%; height: 200px; font-size: 16px; }
+        .stats { margin-top: 10px; font-size: 18px; }
+    </style>
+    <script>
+        function updateCounts() {
+            let text = document.getElementById("text").value;
+            let charCount = text.length;
+            let wordCount = text.trim() ? text.trim().split(/\s+/).length : 0;
+            let sentenceCount = (text.match(/[.!?]/g) || []).length;
+
+            document.getElementById("charCount").innerText = charCount;
+            document.getElementById("wordCount").innerText = wordCount;
+            document.getElementById("sentenceCount").innerText = sentenceCount;
+        }
+    </script>
+</head>
+<body>
+    <h1>Live Character Counter Tool</h1>
+    <textarea id="text" oninput="updateCounts()">{{ text }}</textarea>
+    <div class="stats">
+        Characters: <span id="charCount">{{ char_count }}</span><br>
+        Words: <span id="wordCount">{{ word_count }}</span><br>
+        Sentences: <span id="sentenceCount">{{ sentence_count }}</span>
+    </div>
+</body>
+</html>
